@@ -6,7 +6,9 @@ import axios from 'axios';
 const Container = (props) => {
     const [products, setProducts] = useState([]);
     const [loaded, setLoaded] = useState(false);
-
+    const removeFromDom = id => {
+        setProducts(products.filter(product => product._id != id));
+    }
     useEffect (() => {
         axios.get('http://localhost:8000/api/product')
         .then(res =>{
@@ -19,9 +21,9 @@ const Container = (props) => {
 
     return (
         <div>
-            <Form/>
+            <Form edit={false} product={{}}/>
             <hr/>
-            {loaded && <ProductList products={products}/>}
+            {loaded && <ProductList products={products} removeFromDom={removeFromDom}/>}
         </div>
     )
     }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const Form = (props) => {
 const [title, setTitle] = useState('')
@@ -18,6 +19,7 @@ const updateDescription = (e) => {
     e.preventDefault();
     setDescription(e.target.value);
 }
+
 const handleSubmit = (e) => {
 
     e.preventDefault();
@@ -27,7 +29,7 @@ const handleSubmit = (e) => {
         description
     })
     .then(res=>console.log(res))
-    .catch(err=>console.log(err))
+    .catch(err=>console.error(err))
 
 }
 
@@ -39,6 +41,7 @@ const handleSubmit = (e) => {
             <label>Description:</label><input type="text" value={description} onChange={updateDescription}/><br/>
             <input type="submit" value="Submit"/>
         </form>
+        
     </div>)
 }
 
